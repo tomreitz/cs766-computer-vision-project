@@ -30,7 +30,7 @@ In this project, we focus on age estimation based on specific types of rhytides 
 
 10. Mental crease (between chin and lower lip)
 
-![](/Users/tom/Projects/School/UW-Masters/Spring-2021/cs766/project/cs766-computer-vision-project/rhytides.jpg)
+![rhytide types](rhytides.jpg)
 
 ### Proposed Work
 
