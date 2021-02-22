@@ -1,5 +1,7 @@
 # Age Estimation from Rhytides
 
+**Group Members**: [Tom Reitz](https://github.com/tomreitz) (treitz@wisc) and [Zach Baklund](https://github.com/zbaklund) (baklund@wisc)
+
 ### Introduction
 
 Age estimation from face images is an active research area [[1](https://jivp-eurasipjournals.springeropen.com/articles/10.1186/s13640-018-0278-6)], with applications ranging from facial aging simulation to security, surveillance, and biometrics.
