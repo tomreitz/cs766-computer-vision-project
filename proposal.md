@@ -10,6 +10,13 @@ Various aspects of human faces change as we age. In children, head shape changes
 
 Age estimation can be difficult and imprecise, as environmental and genetic factors affect aging rate and make perceived age vary greatly among individuals. Many studies use distances between facial landmarks for age estimation. [[2](https://www.researchgate.net/publication/228404297_Classification_of_Age_Groups_Based_on_Facial_Features)] used Sobel edge magnitude to extract wrinkle density and depth from face images for age estimation, but this work did not differentiate types of wrinkles in different parts of the face. Other recent work has focused on global methods including deep learning on face image sets.
 
+### Problem Importance and Interest
+
+This is an interesting area of research and development in computer vision applications, and has nearly become ubiquitous as one of the widely recognized potential future uses for the field.
+However some problems still persist in existing algorithms. While better and better facial recognition techniques there has been less focus on the automated qualitative potential for the use
+of computer vision processes. This is an interesting problem for us for a couple of reasons. One, it provides a project for us to research and develop which is widely accepted as a use for
+topic by the average uninitiated individual which makes our aims and goal easier to garner interest by the general public. Another reason this project is interesting, is because it provides an opportunity for us to explore exisiting techniques as well as trying out our own ideas in a manner that is easily measurable on improvement and usability. And lastly we feel that this project will be enjoyable to present as it allows us to talk about the aging process and show intermediate steps in our project pipeline.
+
 In this project, we focus on age estimation based on specific types of rhytides as they appear in different parts of faces:
 
 1. Forehead lines
@@ -56,4 +63,7 @@ Finally, other factors may interfere with rhytide detection, such as makeup or f
 
 * By April 23 (in time for the Final Presentation), we will present our findings from above and we will have train an ML model to predict age based on rhytide intensities. We plan to demonstrate the model's predictions on sample face images in our presentation.
 
+### Evaluating Performance
+
+We will use a wide gamut of qualitative measurements for the performance metrics of our proposed implementation. We will use age labeled datasets as both a control for verification and training data for the machine learning portion. Following a typical convention 80% of the data will be used for training, without hiding the age label, and we will test the efficacy of our project against the remaining 20% of this dataset. Another way we can show results for our project is to compare against both similar algorithms as well as contrasting against other known methods of estimating age from image data. We hope to show benefit in our algorithmic robustness for focusing on specific type of wrinkles (rhytides) or conversely why other methods may be better suited in certain circumstances and conditions.
 
