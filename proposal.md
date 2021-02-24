@@ -12,10 +12,11 @@ Age estimation can be difficult and imprecise, as environmental and genetic fact
 
 ### Problem Importance and Interest
 
-This is an interesting area of research and development in computer vision applications, and has nearly become ubiquitous as one of the widely recognized potential future uses for the field.
-However some problems still persist in existing algorithms. While better and better facial recognition techniques there has been less focus on the automated qualitative potential for the use
-of computer vision processes. This is an interesting problem for us for a couple of reasons. One, it provides a project for us to research and develop which is widely accepted as a use for
-topic by the average uninitiated individual which makes our aims and goal easier to garner interest by the general public. Another reason this project is interesting, is because it provides an opportunity for us to explore exisiting techniques as well as trying out our own ideas in a manner that is easily measurable on improvement and usability. And lastly we feel that this project will be enjoyable to present as it allows us to talk about the aging process and show intermediate steps in our project pipeline.
+Age estimation from face images is an interesting research area which has been explored in prior work (such as [[3](https://www.researchgate.net/publication/228404297_Classification_of_Age_Groups_Based_on_Facial_Features)], [[4](https://www.sciencedirect.com/science/article/abs/pii/S0165168410000757)], [[5](https://ieeexplore.ieee.org/document/4717926)], and [[6](https://ieeexplore.ieee.org/document/7173035)]), but estimation accuracy from these studies remains low -- around 80% to 86%, no better than human accuracy [[7](https://onlinelibrary.wiley.com/doi/abs/10.1002/acp.1442)].
+
+Facial detection and facial recognition systems have improved dramatically in recent years by using deep neural networks, but such approaches provide little insight into the underlyfing features being used to detect and recognize faces in images. Moreover, they typically do not provide age estimates.
+
+We believe that rhytides are a logical and easily-derived feature important to age estimation. Specifically, we are interested in this problem for several reasons: firstly, the problem is of general interest to the public; secondly, our proposed work is a new direction in an existing field which means we can easily measure improvement against prior methods; finally, even if our method does not result in better age estimation accuracy, we can still present qualitative analysis and examples, such as distribution and intensity of different wrinkle types by age, gender, and race.
 
 In this project, we focus on age estimation based on specific types of rhytides as they appear in different parts of faces:
 
@@ -43,13 +44,13 @@ In this project, we focus on age estimation based on specific types of rhytides 
 
 ### Proposed Work
 
-We will use existing face detection software ([OpenCV](https://opencv.org/)) to detect faces in an image, then we will use edge detection in specific parts of the face image to identify and quantify the prescence of the aforementioned types of rhytides. With this code, we will process existing datasets (such as [[3](https://susanqq.github.io/UTKFace/)], [[4](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)], or [[5](https://www.cs.columbia.edu/CAVE/databases/facetracer/)]) of age-labeled face images to study the distributions of each rhytide type by age and gender. We will train a simple ML model to predict age from rhytide measurements, and finally we will compose all of these steps into an age-prediction pipeline.
+We will use existing face detection software ([OpenCV](https://opencv.org/)) to detect faces in an image, then we will use edge detection in specific regions of the face image to identify and quantify the prescence of the aforementioned types of rhytides. With this code, we will process existing datasets (such as [[8](https://susanqq.github.io/UTKFace/)], [[9](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)], or [[10](https://www.cs.columbia.edu/CAVE/databases/facetracer/)]) of age-labeled face images to study the distributions of each rhytide type by age and gender. We will train a simple ML model to predict age from rhytide measurements, and finally we will compose all of these steps into an age-prediction pipeline.
 
 ### Challenges
 
 Image quality issues such as poor lighting or low resolution may make detecting and quantifying rhytides more difficult. We will mitigate this by studying only high-quality face images.
 
-Facial expressions also change the appearance of rhytides -- a smiling, angry, or surprised face may show different wrinkles than a neutral one. We may be able to use [[6](https://github.com/ebarsoum/FERPlus)] to classify emotion in a face image and then weight the rhytide intensities differently for each emotion.
+Facial expressions also change the appearance of rhytides -- a smiling, angry, or surprised face may show different wrinkles than a neutral one. We may be able to use [[11](https://github.com/ebarsoum/FERPlus)] to classify emotion in a face image and then weight the rhytide intensities differently for each emotion.
 
 Finally, other factors may interfere with rhytide detection, such as makeup or facial hair obscuring some rhytides. This issue has no simple solution.
 
@@ -65,5 +66,14 @@ Finally, other factors may interfere with rhytide detection, such as makeup or f
 
 ### Evaluating Performance
 
-We will use a wide gamut of qualitative measurements for the performance metrics of our proposed implementation. We will use age labeled datasets as both a control for verification and training data for the machine learning portion. Following a typical convention 80% of the data will be used for training, without hiding the age label, and we will test the efficacy of our project against the remaining 20% of this dataset. Another way we can show results for our project is to compare against both similar algorithms as well as contrasting against other known methods of estimating age from image data. We hope to show benefit in our algorithmic robustness for focusing on specific type of wrinkles (rhytides) or conversely why other methods may be better suited in certain circumstances and conditions.
+We will train our machine learning model using the standard 80/20% training/testing split. We will then evaluate performance of our model using [mean absolute error](https://en.wikipedia.org/wiki/Mean_absolute_error) (MAE) between predicted age versus ground-truth age labels in face image datasets.
+
+$MAE = {1 \over N} \sum_{i=1}^N | a_i' - a_i | \qquad$ (where $a_i'=$ predicted age, $a_i=$ true age)
+
+Since MAE is a standard error measure in other age estimation studies, we will be able to compare our accuracy against other methods.
+
+For age group classification, we will report accuracy as correct prediction percentage (in line with prior studies).
+
+We hope to show that, especially in adults, focusing on specific types of wrinkles produces robust age estimates.
+
 
