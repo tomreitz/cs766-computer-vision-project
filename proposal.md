@@ -66,11 +66,7 @@ Finally, other factors may interfere with rhytide detection, such as makeup or f
 
 ### Evaluating Performance
 
-We will train our machine learning model using the standard 80/20% training/testing split. We will then evaluate performance of our model using [mean absolute error](https://en.wikipedia.org/wiki/Mean_absolute_error) (MAE) between predicted age versus ground-truth age labels in face image datasets.
-
-$MAE = {1 \over N} \sum_{i=1}^N | a_i' - a_i | \qquad$ (where $a_i'=$ predicted age, $a_i=$ true age)
-
-Since MAE is a standard error measure in other age estimation studies, we will be able to compare our accuracy against other methods.
+We will train our machine learning model using the standard 80/20% training/testing split. We will then evaluate performance of our model using [mean absolute error](https://en.wikipedia.org/wiki/Mean_absolute_error) (MAE) between predicted age versus ground-truth age labels in face image datasets. Since MAE is a standard error measure in other age estimation studies, we will be able to compare our accuracy against other methods.
 
 For age group classification, we will report accuracy as correct prediction percentage (in line with prior studies).
 
