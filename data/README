@@ -1,0 +1,4 @@
+Please avoid committing huge face image datasets to this directory to help keep the repo size small.
+
+We just have a few face images for initial development / testing here, specifically:
+* https://images.pexels.com/photos/638196/pexels-photo-638196.jpeg
