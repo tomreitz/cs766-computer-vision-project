@@ -11,7 +11,10 @@ def poly_mask_eval(img_path, np_polygon_array):
     np_polygon_arry -- polygon points to use for masking (np.array with dtype=np.int32)
     """
     #check to see if img_path exists (guard)
-    if(not os.path.exists(img_path)): return None
+    if(not os.path.exists(img_path)): return "img_path must be provided"
+    #check to see if np_polygon_arry exists (guard)
+    if(not isinstance(np_polygon_array, np.ndarray)): return "please provide polygon as (np.array with dtype=np.int32)"
+    if(not np_polygon_array.dtype == np.int32): return "polygon provided does not type conform to (np.array with dtype=np.int32)"
     
     image = cv.imread(img_path)
 
