@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-def poly_mask_eval(img_path, np_polygon_array, blockSize = 5, weightedMean = 8):
+def poly_mask_eval(image, np_polygon_array, blockSize = 5, weightedMean = 8):
     """Evaluates an image inside of a polygon.
 
     Keyword arguments:
@@ -13,12 +13,15 @@ def poly_mask_eval(img_path, np_polygon_array, blockSize = 5, weightedMean = 8):
     weightedMean -- number used to determine what to subtract from mean in thresholding (default == 8)
     """
     #check to see if img_path exists (guard)
-    if(not os.path.exists(img_path)): return "img_path must be provided"
+    #commented out to change for cv(image obj) rather than path
+    # if(not os.path.exists(img_path)): return "img_path must be provided"
     #check to see if np_polygon_arry exists (guard)
     if(not isinstance(np_polygon_array, np.ndarray)): return "please provide polygon as (np.array with dtype=np.int32)"
     if(not np_polygon_array.dtype == np.int32): return "polygon provided does not type conform to (np.array with dtype=np.int32)"
     
-    image = cv.imread(img_path)
+    #commented out to change for cv(image obj) rather than path
+    # image = cv.imread(img_path)
+
 
     mask = np.zeros(image.shape, dtype=np.uint8)
     
@@ -31,8 +34,9 @@ def poly_mask_eval(img_path, np_polygon_array, blockSize = 5, weightedMean = 8):
     #apply mask
     masked_image = cv.bitwise_and(image, mask)
 
+    #commented out to change for cv(image obj) rather than path
     #save the result
-    cv.imwrite(add_name(img_path, "_masked"), masked_image)
+    # cv.imwrite(add_name(img_path, "_masked"), masked_image)
 
     #convert to grayscale
     gray = cv.cvtColor(masked_image, cv.COLOR_BGR2GRAY)
@@ -82,6 +86,6 @@ def add_name(path, name):
 print(add_name("Photos/Michael_Shapiro.jpg", "_masked"))
 
 test_poly = np.array([[(10,10), (300,300), (10,300), (30,200)]], dtype=np.int32)
-print(poly_mask_eval("Photos/Michael_Shapiro.jpg", test_poly))
+print(poly_mask_eval(cv.imread("Photos/Michael_Shapiro.jpg"), test_poly))
 
 cv.waitKey(0)
