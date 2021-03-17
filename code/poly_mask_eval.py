@@ -9,6 +9,8 @@ def poly_mask_eval(img_path, np_polygon_array, blockSize = 5, weightedMean = 8):
     Keyword arguments:
     img_path -- relative path to image
     np_polygon_arry -- polygon points to use for masking (np.array with dtype=np.int32)
+    blockSize -- number to determine how large a block to use in thresholding (default == 5)
+    weightedMean -- number used to determine what to subtract from mean in thresholding (default == 8)
     """
     #check to see if img_path exists (guard)
     if(not os.path.exists(img_path)): return "img_path must be provided"
@@ -49,7 +51,7 @@ def poly_mask_eval(img_path, np_polygon_array, blockSize = 5, weightedMean = 8):
     plt.show()
 
     #TODO determine evaluation method for value(s) to return from function
-    
+
     #Adaptive Thresholding
     # adaptive_thresh = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_MEAN_C, 
     #                         cv.THRESH_BINARY_INV, 11, 9)
