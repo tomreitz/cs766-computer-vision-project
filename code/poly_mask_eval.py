@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-def poly_mask_eval(img_path, np_polygon_array):
+def poly_mask_eval(img_path, np_polygon_array, blockSize = 5, weightedMean = 8):
     """Evaluates an image inside of a polygon.
 
     Keyword arguments:
@@ -33,7 +33,7 @@ def poly_mask_eval(img_path, np_polygon_array):
     cv.imwrite(add_name(img_path, "_masked"), masked_image)
 
     #convert to grayscale
-    # gray = cv.cvtColor(masked_image, cv.COLOR_BGR2GRAY)
+    gray = cv.cvtColor(masked_image, cv.COLOR_BGR2GRAY)
 
     #Show the current 3 channel histogram
     plt.figure()
@@ -50,6 +50,24 @@ def poly_mask_eval(img_path, np_polygon_array):
 
     #TODO determine evaluation method for value(s) to return from function
     
+    #Adaptive Thresholding
+    # adaptive_thresh = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_MEAN_C, 
+    #                         cv.THRESH_BINARY_INV, 11, 9)
+    adaptive_thresh = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, 
+                        cv.THRESH_BINARY_INV, blockSize, weightedMean)
+    
+    cv.imshow('Adaptive Thresholding', adaptive_thresh)
+
+    #contours
+    contours, hierarchies = cv.findContours(adaptive_thresh, cv.RETR_LIST, cv.CHAIN_APPROX_NONE)
+    # print(f'{len(contours)} contour(s) found')
+
+    blank = np.zeros(image.shape, dtype='uint8')
+
+    cv.drawContours(blank, contours, -1, (0,0,255), 1)
+    cv.imshow('Contours Drawn', blank)
+
+    return len(contours)
 
 def add_name(path, name):
     """Return the updated path when adding name to the filename"""
@@ -63,3 +81,5 @@ print(add_name("Photos/Michael_Shapiro.jpg", "_masked"))
 
 test_poly = np.array([[(10,10), (300,300), (10,300), (30,200)]], dtype=np.int32)
 print(poly_mask_eval("Photos/Michael_Shapiro.jpg", test_poly))
+
+cv.waitKey(0)
