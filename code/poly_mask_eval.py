@@ -44,6 +44,8 @@ def poly_mask_eval(img_path, np_polygon_array):
         plt.xlim([0,256])
 
     plt.show()
+
+    #TODO determine evaluation method for value(s) to return from function
     
 
 def add_name(path, name):
