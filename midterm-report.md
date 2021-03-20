@@ -27,7 +27,7 @@ We have also explored several publicly-available face image datasets to use in t
 [**IMDB-WIKI face image dataset**](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
 - 460,723 images from IMDB (actors)
 - 62,328 images from Wikipedia (celebrities)
-- Dataset includes gender and age for each image, but not race (details are in .mat files in each dataset, which can be converted to CSV using mat.py in this directory)
+- Dataset includes gender and age for each image, but not race (details are in .mat files in each dataset, which can be converted to CSV using [mat.py](code/mat.py))
 - Images vary in size, most are at least 200x200 pixels, some much higher
 - Some images are poor quality, include multiple faces, are a side-view of a face, or even something like a cartoon, but most are good
 - Running facial landmark detection code on takes 1.9 secs per image, and faces are identified in 61% of Wikipedia images and 70% of IMDB images
