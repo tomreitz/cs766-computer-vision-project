@@ -8,7 +8,7 @@
 ### Progress
 
 As outlined in our [proposal](proposal.md), we have completed the following steps:
-* Implement Python code OpenCV and Haar filters to detect faces and facial landmarks in face images
+* Implement Python code with OpenCV and Haar filters to detect faces and facial landmarks in face images
 * Segment faces using facial landmarks into polygon regions corresponding to each of the ten rhytide types mentioned in the proposal
 * Implement Python code to do edge-detection within each polygon to quantify rhytides in the region
 * Annotate face images with polygons and edge-detection values for each polygon
