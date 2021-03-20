@@ -39,7 +39,7 @@ We expect the best results to come from using larger images from the IMDB-WIKI d
 Here are examples of four annotated face images produced by our code:
 
 | Younger 1      | Younger 2    | Older 1      | Older 2     |
-| :------------- | :----------: | :----------: | ----------: |
+| :------------: | :----------: | :----------: | :---------: |
 | <img alt="younger face 2" src="annotated-young-2.jpg" width="250" />   | <img alt="younger face 1" src="annotated-young-1.jpg" width="250" />   | <img alt="older face 2" src="annotated-old-2.jpg" width="250" />    | <img alt="older face 1" src="annotated-old-1.jpg" width="250" />    |
 | Total: 164     | Total: 175   | Total: 574   | Total: 2,150 |
 
