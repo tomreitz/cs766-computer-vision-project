@@ -6,7 +6,7 @@ This page contains documentation and resources for our group project for [CS766]
 
 * [Project Proposal](proposal.md) (due February 24)
 
-* Midterm Report (due March 24)
+* [Midterm Report](midterm-report.md) (due March 24)
 
 * Final Presentation (due April 23 - April 30)
 

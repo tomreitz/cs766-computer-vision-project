@@ -7,6 +7,7 @@ import cv2
 import numpy as np
 #import matplotlib library
 import matplotlib.pyplot as plt
+from poly_mask_eval import poly_mask_eval
 
 def convertToRGB(img): 
     return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -69,11 +70,12 @@ def crop_image(image, det):
 haarcascade = "haarcascade_frontalface_alt2.xml"
 detector = cv2.CascadeClassifier(haarcascade)
 
-#input_dir = "./"
-input_dir = "/Users/tom/Projects/School/UW-Masters/Spring-2021/cs766/project/datasets/UTKFace/"
+input_dir = "./"
+#input_dir = "/Users/tom/Projects/School/UW-Masters/Spring-2021/cs766/project/datasets/UTKFace/"
 #input_dir = "/Users/tom/Projects/School/UW-Masters/Spring-2021/cs766/project/datasets/wiki_crop/00/"
 #input_dir = "/Users/tom/Projects/School/UW-Masters/Spring-2021/cs766/project/datasets/imdb_crop/00/"
-output_dir = './UTKFace-annotated/'
+output_dir = './annotated/'
+#output_dir = './UTKFace-annotated/'
 #output_dir = './wiki_crop_annotated/'
 #output_dir = './imdb_crop_annotated/'
 files = os.listdir( input_dir )
@@ -137,7 +139,10 @@ for file in files:
                     if key=='forehead':
                         (x,y,w,d) = faces[0]
                         polygon = np.append(polygon, [[x+w,y], [x,y]], axis=0)
+                    polygon_centroid = np.average(polygon, axis=0)
+                    edges = poly_mask_eval(cropped, np.int32([polygon]), blockSize = 5, weightedMean = 8)
                     color = tuple([int(x) for x in list(np.random.choice(range(256), size=3))])
+                    cv2.putText(cropped,str(edges), (int(polygon_centroid[0]),int(polygon_centroid[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, color)
                     cv2.polylines(cropped, np.int32([polygon]), True, color, 2)
                 #plt.axis("off")
                 #plt.figure(figsize = (4,4))
