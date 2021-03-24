@@ -16,6 +16,7 @@ As outlined in our [proposal](proposal.md), we have completed the following step
 For annotating the face images with edge-detection values, we currently mask out the region of interest (for each of our regions)
 As shown here:
 * {'forehead': 28, 'frown': 30, 'upper_eye_hood_left': 12, 'upper_eye_hood_right': 13,'crows_feet_left': 32, 'crows_feet_right': 36, 'bunny_lines_left': 14, 'bunny_lines_right': 15, 'bags_left': 8, 'bags_right': 9, 'laugh_lines_left': 15, 'laugh_lines_right': 15, 'jowls_left': 10, 'jowls_right': 11, 'lip_lines': 4, 'mental_crease': 8}
+
 We return the resulting number of edges in that particular region. This gives us the ability to also return other values in addition if we decide to change the method of edge detection or add functionality to ignore already apparent corner cases (eyeglasses, hairbangs, facialhair)
 If during our machine learning phase of this project we want to train on more values than just the number of edges per region.
 
