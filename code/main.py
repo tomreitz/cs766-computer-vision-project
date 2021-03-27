@@ -69,21 +69,34 @@ def crop_image(image, det):
 # code borrowed from https://medium.com/analytics-vidhya/facial-landmarks-and-face-detection-in-python-with-opencv-73979391f30e
 haarcascade = "haarcascade_frontalface_alt2.xml"
 detector = cv2.CascadeClassifier(haarcascade)
+LBFmodel = "lbfmodel.yaml"
+landmark_detector  = cv2.face.createFacemarkLBF()
+landmark_detector.loadModel(LBFmodel)
 
-input_dir = "./"
+#input_dir = "./"
 #input_dir = "/Users/tom/Projects/School/UW-Masters/Spring-2021/cs766/project/datasets/UTKFace/"
 #input_dir = "/Users/tom/Projects/School/UW-Masters/Spring-2021/cs766/project/datasets/wiki_crop/00/"
 #input_dir = "/Users/tom/Projects/School/UW-Masters/Spring-2021/cs766/project/datasets/imdb_crop/00/"
-output_dir = './annotated/'
+#output_dir = './annotated/'
 #output_dir = './UTKFace-annotated/'
 #output_dir = './wiki_crop_annotated/'
 #output_dir = './imdb_crop_annotated/'
-files = os.listdir( input_dir )
+#files = os.listdir( input_dir )
 num_processed = 0
 num_faces = 0
-for file in files:
+
+images = []
+with open('meta.csv', 'r') as f:
+    lines = f.readlines()
+    for l in lines:
+        images.append(l.strip())
+
+print('image,bytes,width,height,age,gender,forehead,frown,upper_eye_hood_left,upper_eye_hood_right,crows_feet_left,crows_feet_right,crows_feet_right,bunny_lines_left,bunny_lines_right,bags_left,bags_right,laugh_lines_left,laugh_lines_right,jowls_left,jowls_right,lip_lines,mental_crease')
+for row in images:
+    tmp = row.split(',')
+    file = '/Users/tom/Projects/School/UW-Masters/Spring-2021/cs766/project/datasets/'+tmp[2]
     if(file.endswith(".jpg")):
-        img = cv2.imread(input_dir+file)
+        img = cv2.imread(file)
         #print('processing '+file)
         num_processed += 1
         height, width = img.shape[:2]
@@ -96,9 +109,6 @@ for file in files:
 
         faces = detector.detectMultiScale(gray_img)
         if len(faces)>0:
-            LBFmodel = "lbfmodel.yaml"
-            landmark_detector  = cv2.face.createFacemarkLBF()
-            landmark_detector.loadModel(LBFmodel)
             _, landmarks = landmark_detector.fit(gray_img, faces)
             shape = landmarks[0][0]
     
@@ -112,8 +122,8 @@ for file in files:
             gray_img = cv2.cvtColor(cropped, cv2.COLOR_BGR2GRAY)
             faces = detector.detectMultiScale(gray_img)
             if len(faces)>0:
-                landmark_detector  = cv2.face.createFacemarkLBF()
-                landmark_detector.loadModel(LBFmodel)
+                #landmark_detector  = cv2.face.createFacemarkLBF()
+                #landmark_detector.loadModel(LBFmodel)
 
                 _, landmarks = landmark_detector.fit(gray_img, faces)
                 rhytide_polygon_index = {
@@ -134,6 +144,7 @@ for file in files:
                     'lip_lines': [36, 35, 34, 33, 32, 49, 50, 51, 52, 53, 54, 55],
                     'mental_crease': [7, 8, 9, 10, 11, 56, 57, 58, 59, 60]
                 }
+                this_row = [tmp[2], str(os.path.getsize(file)), str(width), str(height), str(tmp[0]), str(tmp[1])]
                 for key in rhytide_polygon_index:
                     polygon = np.array(landmarks[0][0][[x-1 for x in rhytide_polygon_index[key]]])
                     if key=='forehead':
@@ -141,17 +152,20 @@ for file in files:
                         polygon = np.append(polygon, [[x+w,y], [x,y]], axis=0)
                     polygon_centroid = np.average(polygon, axis=0)
                     edges = poly_mask_eval(cropped, np.int32([polygon]), blockSize = 5, weightedMean = 8)
-                    color = tuple([int(x) for x in list(np.random.choice(range(256), size=3))])
-                    cv2.putText(cropped,str(edges), (int(polygon_centroid[0]),int(polygon_centroid[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, color)
-                    cv2.polylines(cropped, np.int32([polygon]), True, color, 2)
+                    this_row.append(str(edges))
+                    #color = tuple([int(x) for x in list(np.random.choice(range(256), size=3))])
+                    #cv2.putText(cropped,str(edges), (int(polygon_centroid[0]),int(polygon_centroid[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, color)
+                    #cv2.polylines(cropped, np.int32([polygon]), True, color, 2)
                 #plt.axis("off")
                 #plt.figure(figsize = (4,4))
                 #plt.imshow(convertToRGB(cropped))
                 #plt.show()
-                cv2.imwrite(output_dir+file, cropped)
+                #cv2.imwrite(output_dir+file, cropped)
+                print(','.join(this_row))
                 num_faces += 1
+                if num_faces > 10000: break
             else:
-                print('No faces found :( ['+file+']')
+                print('XXXXXXXXX No faces found :( ['+file+']')
         else:
-            print('No faces found :( ['+file+']')
-        print(str(num_processed)+' files processed; '+str(num_faces)+' faces found ['+str(round(100*num_faces/num_processed,2))+'%]')
+            print('XXXXXXXXXX No faces found :( ['+file+']')
+        print('XXXXXXXXXX '+str(num_processed)+' files processed; '+str(num_faces)+' faces found ['+str(round(100*num_faces/num_processed,2))+'%]')
