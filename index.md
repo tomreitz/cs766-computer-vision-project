@@ -10,7 +10,7 @@ This page contains documentation and resources for our group project for [CS766]
 
 * Final Presentation ([Slides](https://docs.google.com/presentation/d/1aJU_h0YStWdd_LNF0Sg-z33jkzOfN0_mpU_Pu-ZvVHo/edit?usp=sharing), [Video](https://www.youtube.com/watch?v=TrRghR6Su7I)) (due April 23 - April 30)
 
-* Final Report (due May 5)
+* [Final Report](https://github.com/tomreitz/cs766-computer-vision-project/raw/main/final-report.pdf) (due May 5)
 
 * [This web page](https://tomreitz.github.io/cs766-computer-vision-project/) (due May 5) 
 
