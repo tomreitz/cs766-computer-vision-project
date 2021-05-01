@@ -106,7 +106,7 @@ rhytide_polygon_index = {
     'mental_crease': [7, 8, 9, 10, 11, 56, 57, 58, 59, 60]
 }
 
-print('image,bytes,width,height,age,gender,forehead,frown,upper_eye_hood_left,upper_eye_hood_right,crows_feet_left,crows_feet_right,bunny_lines_left,bunny_lines_right,bags_left,bags_right,laugh_lines_left,laugh_lines_right,jowls_left,jowls_right,lip_lines,mental_crease,total')
+print('image,bytes,width,height,age,gender,ethnicity,forehead,frown,upper_eye_hood_left,upper_eye_hood_right,crows_feet_left,crows_feet_right,bunny_lines_left,bunny_lines_right,bags_left,bags_right,laugh_lines_left,laugh_lines_right,jowls_left,jowls_right,lip_lines,mental_crease,total')
 for row in images:
     tmp = row.split('_')
     file = input_dir+row # tmp[2]
@@ -141,7 +141,7 @@ for row in images:
                 #landmark_detector.loadModel(LBFmodel)
 
                 _, landmarks = landmark_detector.fit(gray_img, faces)
-                this_row = [row, str(os.path.getsize(file)), str(width), str(height), str(tmp[0]), str(tmp[1])]
+                this_row = [row, str(os.path.getsize(file)), str(width), str(height), str(tmp[0]), str(tmp[1]), str(tmp[2])]
                 total = 0
                 for key in rhytide_polygon_index:
                     # make polygon:
