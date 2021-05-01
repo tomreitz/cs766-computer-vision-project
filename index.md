@@ -14,7 +14,7 @@ This page contains documentation and resources for our group project for [CS766]
 
 * [This web page] (due May 5) 
 
-===Summary===
+### Summary
 
 In this project, we focus on age estimation based on specific types of rhytides (facial wrinkles) as they appear in different parts of faces. We use edge detection to make rhytide measurements for each rhytide type and construct a feature vector from the measurements for statistical analysis and machine learning prediction.
 
