@@ -12,7 +12,7 @@ This page contains documentation and resources for our group project for [CS766]
 
 * Final Report (due May 5)
 
-* [This web page] (due May 5) 
+* [This web page](https://tomreitz.github.io/cs766-computer-vision-project/) (due May 5) 
 
 ### Summary
 
