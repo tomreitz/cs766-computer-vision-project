@@ -23,3 +23,5 @@ We tested our pipeline using the [UTKFace dataset](https://susanqq.github.io/UTK
 Our code is [here](https://github.com/tomreitz/cs766-computer-vision-project/tree/main/code), with [a README](https://github.com/tomreitz/cs766-computer-vision-project/tree/main/code/README.md) which explains how to run it.
 
 Ultimately, we found that variations in lighting and facial expressions cause enough noise to make this method unreliable for estimating age.
+
+Please see our final report PDF [here](https://github.com/tomreitz/cs766-computer-vision-project/raw/main/final-report.pdf).
