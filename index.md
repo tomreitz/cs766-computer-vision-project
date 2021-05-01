@@ -20,4 +20,4 @@ In this project, we focus on age estimation based on specific types of rhytides 
 
 We tested our pipeline using the [UTKFace dataset](https://susanqq.github.io/UTKFace/). As discussed in our [presentation](https://www.youtube.com/watch?v=TrRghR6Su7I), we found issues with many of the UTKFace images. So we cleaned the dataset, removing many images of poor quality or with occlusions. This cleaned dataset is available [here](https://github.com/tomreitz/cs766-computer-vision-project/tree/main/data/UTKFace-cleaned.zip).
 
-Our code is [here](https://github.com/tomreitz/cs766-computer-vision-project/tree/main/code), with [a README](https://github.com/tomreitz/cs766-computer-vision-project/tree/main/code/README) which explains how to run it.
+Our code is [here](https://github.com/tomreitz/cs766-computer-vision-project/tree/main/code), with [a README](https://github.com/tomreitz/cs766-computer-vision-project/tree/main/code/README.md) which explains how to run it.
